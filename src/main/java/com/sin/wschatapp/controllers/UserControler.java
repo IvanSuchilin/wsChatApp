@@ -4,7 +4,6 @@ import com.sin.wschatapp.services.UserService;
 import com.sin.wschatapp.user.Status;
 import com.sin.wschatapp.user.User;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.Payload;
