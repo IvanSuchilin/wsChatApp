@@ -13,7 +13,7 @@ public class ChatRoomService {
     private final ChatroomRepository chatroomRepository;
 
     public Optional<String> getChatRoomId(String senderId, String receiverId, boolean isNewRoomNeed) {
-        return chatroomRepository.findBySenderIdAndReciverId(senderId, receiverId)
+        return chatroomRepository.findBySenderIdAndReceiverId(senderId, receiverId)
                 .map(ChatRoom::getChatId)
                 .or(() -> {
                     if (isNewRoomNeed) {
