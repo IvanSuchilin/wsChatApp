@@ -5,6 +5,9 @@ import com.sin.wschatapp.repositories.ChatMessageRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class ChatMessageService {
@@ -15,6 +18,11 @@ public class ChatMessageService {
         var chatId = chatRoomService.getChatRoomId(chatMessage.getSenderId(), chatMessage.getReceiverId(), true)
                 .orElseThrow(RuntimeException::new);
         chatMessage.setChatId(chatId);
-        return chatMessage;
+        return chatMessageRepository.save(chatMessage);
+    }
+
+    public List<ChatMessage> getAllChatMessages (String senderId, String receiverId){
+        var chatId = chatRoomService.getChatRoomId(senderId, receiverId, false);
+        return chatId.map(chatMessageRepository::findByChatId).orElse(new ArrayList<>());
     }
 }
