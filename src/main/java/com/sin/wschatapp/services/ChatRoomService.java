@@ -28,13 +28,13 @@ public class ChatRoomService {
         var chatId = String.format("%s_%s", senderId, receiverId);
         ChatRoom senderReceiver = ChatRoom.builder()
                 .senderId(senderId)
-                .receiver(receiverId)
+                .receiverId(receiverId)
                 .chatId(chatId)
                 .build();
 
         ChatRoom receiverSender = ChatRoom.builder()
                 .senderId(receiverId)
-                .receiver(senderId)
+                .receiverId(senderId)
                 .chatId(chatId)
                 .build();
         chatroomRepository.save(senderReceiver);
