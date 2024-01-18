@@ -24,12 +24,13 @@ public class ChatController {
     public void processMessage(@Payload ChatMessage chatMessage){
         ChatMessage storedMessage = chatMessageService.save(chatMessage);
         simpMessagingTemplate.convertAndSendToUser(chatMessage.getReceiverId(), "/queue/messages",
-                ChatNotification.builder()
-                        .id(storedMessage.getId())
-                        .senderId(storedMessage.getSenderId())
-                        .receiverId(storedMessage.getReceiverId())
-                        .text(storedMessage.getText())
-                        .build());
+               new ChatNotification(
+                       storedMessage.getId(),
+                       storedMessage.getSenderId(),
+                       storedMessage.getReceiverId(),
+                       storedMessage.getContent()
+               )
+        );
     }
 
     @GetMapping("/messages/{senderId}/{receiverId}")

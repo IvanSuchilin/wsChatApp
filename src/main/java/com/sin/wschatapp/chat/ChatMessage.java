@@ -5,6 +5,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDateTime;
+import java.util.Date;
 
 @Getter
 @Setter
@@ -18,6 +19,6 @@ public class ChatMessage {
     private String chatId;
     private String senderId;
     private String receiverId;
-    private String text;
-    private LocalDateTime time;
+    private String content;
+    private Date time;
 }
